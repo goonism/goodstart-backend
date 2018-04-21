@@ -9,7 +9,7 @@ Substitute positive message and background color for the positive message and ba
 ## Changing the message
 This is super janky and will be improved some day when I have time. Basically to change the message, run the bash script `createNewMessage.sh` like so:
 ```
-./createNewMessage.sh <your ssh server> <location of config file in remote host> > /dev/null 2>&1
+./createNewMessage.sh <your ssh server> <location of config file in remote host> <image you would like to upload> /dev/null 2>&1
 ```
 
 ## License
