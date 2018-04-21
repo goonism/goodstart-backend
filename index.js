@@ -4,6 +4,10 @@ const fs = require('fs');
 const app = express();
 
 app.get('/', function(req, res) {
+  res.status(200).send(":)");
+});
+
+app.get('/api', function(req, res) {
   jsonResponse = {
     positiveMessage: process.argv[2],
     backgroundColor: process.argv[3]
