@@ -6,5 +6,9 @@ This is the code for Goodstart which is a Chrome New Tab page meant to get you t
 
 Substitute positive message and background color for the positive message and background color you want to have being represented.
 
+## Changing the message
+This is super janky and will be improved some day when I have time. Basically to change the message, run the bash script `createNewMessage.sh` like so:
+`./createNewMessage.sh <your ssh server> <location of config file in remote host>`
+
 ## License
 MIT
