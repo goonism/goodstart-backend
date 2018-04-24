@@ -1,15 +1,25 @@
 const express = require('express');
 const fs = require('fs');
 
-const configName = './config.json'
-let config = null;
+
+let imagesFile = 'images.json';
+let messagesFile = 'messages.json';
 
 // Read it once and then watch for changes afterwards.
-config = JSON.parse(fs.readFileSync(configName, 'utf8'));
+let images = JSON.parse(fs.readFileSync(imagesFile, 'utf8'));
+let messages = JSON.parse(fs.readFileSync(messagesFile, 'utf8'));
 
-fs.watchFile(configName, function(curr, prev) {
-  config = JSON.parse(fs.readFileSync(configName, 'utf8'));
+fs.watchFile(imagesFile, function(curr, prev) {
+  images = JSON.parse(fs.readFileSync(imagesFile, 'utf8'));
 });
+
+fs.watchFile(messagesFile, function(curr, prev) {
+  images = JSON.parse(fs.readFileSync(messagesFile, 'utf8'));
+});
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 const app = express();
 
@@ -17,8 +27,14 @@ app.get('/', function(req, res) {
   res.status(200).send(":)");
 });
 
-app.get('/api', function(req, res) {
-  res.status(200).send(JSON.stringify(config))
+app.get('/message', function(req, res) {
+  const randomMessage = messages[getRandomInt(messages.length)]
+  res.status(200).send(JSON.stringify(randomMessage))
+});
+
+app.get('/image', function(req, res) {
+  const randomImage = images[getRandomInt(images.length)]
+  res.status(200).send(JSON.stringify(randomImage))
 });
 
 var server = app.listen(8000, function () {
